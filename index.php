@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["team1"]) && isset($_PO
         <h1 class="mt-4 text-center">BIENVENUE AU CHAMPIONNAT BENINOIS</h1>
         <h3 class="mt-4 text-center">Ajouter un résultat de match</h3>
 
-        <form id="matchForm" methode="post">
+        <form id="matchForm" method="post">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
