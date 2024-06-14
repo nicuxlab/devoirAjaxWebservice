@@ -1,4 +1,6 @@
 <?php
+// Ce fichier me permet juste de récupérer au chargement de la page les données liées au résultat des matches.
+
 // Connexion à la base de données
 $db = new PDO('mysql:host=localhost;dbname=championnat', 'root', '');
 
