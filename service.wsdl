@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" 
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+             xmlns:tns="http://localhost/devoirajax/wsdl" 
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+             targetNamespace="http://localhost/devoirajax/wsdl">
+    <types>
+        <xsd:schema targetNamespace="http://localhost/devoirajax/wsdl">
+            <xsd:element name="getMatchScoresRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="match_id" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getMatchScoresResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="addMatchResultRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="match_id" type="xsd:int"/>
+                        <xsd:element name="score_team1" type="xsd:int"/>
+                        <xsd:element name="score_team2" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="addMatchResultResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="getMatchScoresRequest">
+        <part name="parameters" element="tns:getMatchScoresRequest"/>
+    </message>
+    <message name="getMatchScoresResponse">
+        <part name="parameters" element="tns:getMatchScoresResponse"/>
+    </message>
+    <message name="addMatchResultRequest">
+        <part name="parameters" element="tns:addMatchResultRequest"/>
+    </message>
+    <message name="addMatchResultResponse">
+        <part name="parameters" element="tns:addMatchResultResponse"/>
+    </message>
+    <portType name="FootballServicePortType">
+        <operation name="getMatchScores">
+            <input message="tns:getMatchScoresRequest"/>
+            <output message="tns:getMatchScoresResponse"/>
+        </operation>
+        <operation name="addMatchResult">
+            <input message="tns:addMatchResultRequest"/>
+            <output message="tns:addMatchResultResponse"/>
+        </operation>
+    </portType>
+    <binding name="FootballServiceBinding" type="tns:FootballServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getMatchScores">
+            <soap:operation soapAction="getMatchScores"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="addMatchResult">
+            <soap:operation soapAction="addMatchResult"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="FootballService">
+        <port name="FootballServicePort" binding="tns:FootballServiceBinding">
+            <soap:address location="http://localhost/devoirajax/service.php"/>
+        </port>
+    </service>
+</definitions>
